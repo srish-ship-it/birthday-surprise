@@ -160,6 +160,25 @@
       .modal{padding:16px}
       .cake{width:180px;height:180px}
     }
+   .cake {
+  width: 220px;
+  margin: 2rem auto;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.flame {
+  transform-origin: center bottom;
+  animation: flicker 1s infinite alternate ease-in-out;
+}
+@keyframes flicker {
+  0% { transform: scale(1) translateY(0); opacity: 0.9; }
+  50% { transform: scale(1.1) translateY(-1px); opacity: 1; }
+  100% { transform: scale(0.9) translateY(1px); opacity: 0.8; }
+}
+
   </style>
 </head>
 <body>
@@ -174,26 +193,30 @@
 
       <h1 id="title">happy birthday my love</h1>
       <p class="lead">Wishing you a day as sweet and bright as your smile.</p>
+      <div class="cake">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="170" rx="80" ry="12" fill="#e5e7eb" />
+    <rect x="40" y="110" width="120" height="40" rx="8" fill="#f59e0b" />
+    <path d="M40 110 h120 v8 c-10 8 -20 8 -30 0 c-10 -8 -20 -8 -30 0 
+             c-10 8 -20 8 -30 0 c-10 -8 -20 -8 -30 0 z" fill="#fde68a" />
+    <rect x="50" y="80" width="100" height="34" rx="8" fill="#ef4444" />
+    <path d="M50 80 h100 v8 c-8 6 -16 6 -24 0 c-8 -6 -16 -6 -24 0 
+             c-8 6 -16 6 -24 0 c-8 -6 -16 -6 -24 0 z" fill="#fecaca" />
+    <rect x="60" y="60" width="80" height="24" rx="8" fill="#a78bfa" />
+    <rect x="96" y="30" width="8" height="30" rx="2" fill="#60a5fa" />
+    <!-- Flickering flame -->
+    <path class="flame" d="M100 20 c-6 8 -6 14 0 18 
+                            c6 -4 6 -10 0 -18z" fill="#f59e0b" />
+    <g fill="#fff">
+      <circle cx="75" cy="92" r="2" />
+      <circle cx="125" cy="92" r="2" />
+      <circle cx="85" cy="122" r="2" />
+      <circle cx="115" cy="122" r="2" />
+    </g>
+  </svg>
+</div>
 
-      <div class="cake" aria-hidden="true">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Birthday cake">
-          <ellipse cx="100" cy="170" rx="80" ry="12" fill="#e5e7eb" />
-          <rect x="40" y="110" width="120" height="40" rx="8" fill="#f59e0b" />
-          <path d="M40 110 h120 v8 c-10 8 -20 8 -30 0 c-10 -8 -20 -8 -30 0 c-10 8 -20 8 -30 0 c-10 -8 -20 -8 -30 0 z" fill="#fde68a" />
-          <rect x="50" y="80" width="100" height="34" rx="8" fill="#ef4444" />
-          <path d="M50 80 h100 v8 c-8 6 -16 6 -24 0 c-8 -6 -16 -6 -24 0 c-8 6 -16 6 -24 0 c-8 -6 -16 -6 -24 0 z" fill="#fecaca" />
-          <rect x="60" y="60" width="80" height="24" rx="8" fill="#a78bfa" />
-          <rect x="96" y="30" width="8" height="30" rx="2" fill="#60a5fa" />
-          <path d="M100 20 c-6 8 -6 14 0 18 c6 -4 6 -10 0 -18z" fill="#f59e0b" />
-          <g fill="#fff">
-            <circle cx="75" cy="92" r="2" />
-            <circle cx="125" cy="92" r="2" />
-            <circle cx="85" cy="122" r="2" />
-            <circle cx="115" cy="122" r="2" />
-          </g>
-        </svg>
-      </div>
-
+      
       <div style="margin-top:14px;">
         <button class="btn" id="openBtn" aria-haspopup="dialog">Open Love Letter</button>
       </div>
@@ -238,10 +261,11 @@
 Happy Birthday Rohit,
 Love of my life ❤️
 
-I am truly grateful to have you in my life.Aaj bhi yaad hai mujhe woh din jab mujhe realize hua tha ki I have feelings for you, uss din maine apne knowns me itni baar bataya ki sabb pareshan ho ge the. Aur kuch log toh ye bhi bolte the ki “aisa bhi kya h Rohit me?”
+I am truly grateful to have you in my life.Aaj bhi yaad hai mujhe woh din jab mujhe realize hua tha ki I have feelings for you, uss din maine apne knowns ko itni baar bataya ki sabb pareshan ho ge the. Aur kuch log toh ye bhi bolte the ki “aisa bhi kya h Rohit me?”
 
-Sch kahun toh kai baar mujhe jalne (phukne) (mujhe nhi pta ye jealous hona h yaa possessive, aap kch bhi smjh skte h) ki bhi bimaari lag jaati thi( abhi bhi hai), aur main apne doston ke paas jaake complain karti thi ki “ye samajhta kyu nahi h?” Par jo bhi h, aap jaise bhi h, h toh mere hi.
-Kabhi kabhi aapko kootne ka bhi mnn krta h aur ek din wo kaam main zarur pura karungi. Lekin usse bhi zyada dil karta hai aapke saath apna pura future bitane ka — saath buddhe hone ka. (Waise aap mujhse pehle buddhe ho jayenge, par main waada karti hoon ki main aapke saath hi rahungi 💕). Bas ek request h — khana banana seekh lijiyega, kyunki mujhe khana bnana se jyada khana psnd h 😂. Aur apni yaadash bhi thodi tez kar lijiye, please!
+Sch kahun toh kai baar mujhe jalne (phukne 😜(mujhe nhi pta ye jealous hona h yaa possessive, aap kch bhi smjh skte h) ki bhi bimaari lag jaati thi( abhi bhi hai), aur main apne doston ke paas jaake complain karti thi ki “ye samajhta kyu nahi h?” Par jo bhi h, aap jaise bhi h, h toh mere hi.
+
+Kabhi kabhi aapko kootne ka bhi mnn krta h aur ek din wo kaam main zarur pura karungi. Lekin usse bhi zyada dil karta hai aapke saath apna pura future bitane ka — saath buddhe hone ka. (Waise aap mujhse pehle buddhe ho jayenge, par main waada karti hoon ki main aapke saath hi rahungi 💕). Bas ek request h — khana banana seekh lena, warna aapko bhi sudharna padega 😂 Aur apni yaadash bhi thodi tez kar lijiye, please!
 
 Thank you for always loving me, even after all my mood swings and nakhre. Mujhe pata hai m kabhi kabhi main extra ho jaati hoon, par ab aapko zindagi bhar mujhe jhelna hi padega 😌
 
