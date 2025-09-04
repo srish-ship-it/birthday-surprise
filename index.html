@@ -32,7 +32,6 @@
       color: #e11d48;
     }
 
-    /* Container */
     .wrap{
       min-height:100vh;
       display:flex;
@@ -65,14 +64,12 @@
     }
     p.lead{margin:0;color:var(--muted);}
 
-    /* Cake */
     .cake{
       margin:26px auto 18px;
       width:240px;
       height:240px;
     }
 
-    /* Button */
     .btn{
       display:inline-block;
       padding:12px 22px;
@@ -88,10 +85,8 @@
     .btn:active{transform:translateY(1px) scale(.998)}
     .btn:focus{outline:3px solid rgba(239,71,111,.12)}
 
-    /* Footer */
     .foot{font-size:12px;color:var(--muted);margin-top:12px}
 
-    /* Floating hearts */
     .hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
     .heart{
       position:absolute;
@@ -108,7 +103,6 @@
       100%{transform:translateY(-20vh) scale(1.1) rotate(25deg); opacity:0}
     }
 
-    /* Modal */
     .modal-backdrop{
       position:fixed;inset:0;background:rgba(2,6,23,0.45);display:flex;align-items:center;justify-content:center;z-index:60;
     }
@@ -129,7 +123,6 @@
       background:#111827;color:#fff;border:none;padding:8px 12px;border-radius:10px;cursor:pointer;
     }
 
-    /* Typewriter area */
     .letter{
       font-family: "Courier New", Courier, monospace;
       white-space:pre-wrap;
@@ -150,7 +143,19 @@
     }
     @keyframes blink{50%{opacity:0}}
 
-    /* Responsive tweaks */
+    /* Kiss burst */
+    .kiss {
+      position: fixed;
+      font-size: 28px;
+      pointer-events: none;
+      animation: kiss-burst 1s forwards;
+      z-index: 100;
+    }
+    @keyframes kiss-burst {
+      0% { transform: translate(0,0) scale(1); opacity:1; }
+      100% { transform: translate(var(--x), var(--y)) scale(0.6); opacity:0; }
+    }
+
     @media (max-width:520px){
       .modal{padding:16px}
       .cake{width:180px;height:180px}
@@ -170,7 +175,6 @@
       <h1 id="title">happy birthday my love</h1>
       <p class="lead">Wishing you a day as sweet and bright as your smile.</p>
 
-      <!-- Cake SVG -->
       <div class="cake" aria-hidden="true">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Birthday cake">
           <ellipse cx="100" cy="170" rx="80" ry="12" fill="#e5e7eb" />
@@ -198,13 +202,10 @@
     </div>
   </div>
 
-  <!-- Modal (initially hidden) -->
   <div id="modalRoot" aria-hidden="true"></div>
 
   <script>
-    /* ------------------------
-       Floating Hearts Creator
-       ------------------------*/
+    /* Floating hearts */
     const heartsContainer = document.getElementById('heartsContainer');
     const HEART_COUNT = 12;
     function rand(min,max){ return Math.random()*(max-min)+min; }
@@ -227,9 +228,6 @@
       heartsContainer.appendChild(el);
     }
 
-    /* ------------------------
-       Modal + Typewriter Logic
-       ------------------------*/
     const modalRoot = document.getElementById('modalRoot');
     const openBtn = document.getElementById('openBtn');
     let typingTimer = null;
@@ -240,11 +238,10 @@
 Happy Birthday Rohit,
 Love of my life ❤️
 
-I am truly grateful to have you in my life. Aaj bhi yaad hai mujhe woh din jab mujhe realize hua tha ki I have feelings for you, uss din maine apne knowns ko itni baar bataya ki sabb pareshan ho ge the. Aur kuch log toh ye bhi bolte the ki “aisa bhi kya h Rohit me?”
+I am truly grateful to have you in my life.Aaj bhi yaad hai mujhe woh din jab mujhe realize hua tha ki I have feelings for you, uss din maine apne knowns me itni baar bataya ki sabb pareshan ho ge the. Aur kuch log toh ye bhi bolte the ki “aisa bhi kya h Rohit me?”
 
 Sch kahun toh kai baar mujhe jalne (phukne) (mujhe nhi pta ye jealous hona h yaa possessive, aap kch bhi smjh skte h) ki bhi bimaari lag jaati thi( abhi bhi hai), aur main apne doston ke paas jaake complain karti thi ki “ye samajhta kyu nahi h?” Par jo bhi h, aap jaise bhi h, h toh mere hi.
-
-Kabhi kabhi aapko kootne ka bhi mnn krta h aur ek din wo kaam main zarur pura karungi. Lekin usse bhi zyada dil karta hai aapke saath apna pura future bitane ka — saath buddhe hone ka. (Waise aap mujhse pehle buddhe ho jayenge, par main waada karti hoon ki main aapke saath hi rahungi 💕). Bas ek request h — khana banana seekh lena, warna aapko bhi sudharna padega 😂 Aur apni yaadash bhi thodi tez kar lijiye, please!
+Kabhi kabhi aapko kootne ka bhi mnn krta h aur ek din wo kaam main zarur pura karungi. Lekin usse bhi zyada dil karta hai aapke saath apna pura future bitane ka — saath buddhe hone ka. (Waise aap mujhse pehle buddhe ho jayenge, par main waada karti hoon ki main aapke saath hi rahungi 💕). Bas ek request h — khana banana seekh lijiyega, kyunki mujhe khana bnana se jyada khana psnd h 😂. Aur apni yaadash bhi thodi tez kar lijiye, please!
 
 Thank you for always loving me, even after all my mood swings and nakhre. Mujhe pata hai m kabhi kabhi main extra ho jaati hoon, par ab aapko zindagi bhar mujhe jhelna hi padega 😌
 
@@ -255,10 +252,28 @@ Bss itna hi, hai toh bhot kuch prr abhi ke liye bss itna hi.
 I love you soooo much. 💖
 I love you, and I’m ready for every laugh, every fight, every memory and to grow old - all with you.
 
-Forever yours ❤️
+
+Forever yours ❤️`;
+
+    function burstKisses() {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      for (let i = 0; i < 7; i++) {
+        const kiss = document.createElement('div');
+        kiss.className = 'kiss';
+        kiss.textContent = '💋';
+        kiss.style.left = centerX + 'px';
+        kiss.style.top = centerY + 'px';
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 120 + Math.random() * 80;
+        kiss.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+        kiss.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+        document.body.appendChild(kiss);
+        setTimeout(() => kiss.remove(), 1000);
+      }
+    }
 
     function showModal(){
-      // Build modal HTML
       modalRoot.innerHTML = `
         <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
           <div class="modal" role="document">
@@ -272,45 +287,33 @@ Forever yours ❤️
         </div>
       `;
       modalRoot.setAttribute('aria-hidden','false');
-
-      // start typewriter
       const area = document.getElementById('letterArea');
       const closeBtn = document.getElementById('closeModal');
       charIndex = 0;
       area.textContent = '';
-      // Append cursor
       const cursor = document.createElement('span');
       cursor.className = 'cursor';
       area.appendChild(cursor);
-
-      // Typing function
       function typeStep(){
         if(charIndex >= loveLetter.length){
           clearInterval(typingTimer);
-          // remove trailing cursor after a short pause
           setTimeout(()=>{ cursor.style.opacity='0' }, 800);
           return;
         }
-        // Insert next char before cursor
-        const ch = loveLetter[charIndex++];
-        // Convert spaces/newlines to visible content
-        // use textContent to avoid HTML injection
-        // We'll rebuild text node each step for simplicity
-        const textBefore = loveLetter.slice(0,charIndex);
-        // set textContent then append cursor again
+        const textBefore = loveLetter.slice(0,charIndex+1);
         area.textContent = textBefore;
         area.appendChild(cursor);
+        charIndex++;
       }
+      typingTimer = setInterval(typeStep, 24);
 
-      typingTimer = setInterval(typeStep, 24); // speed: lower -> faster
-
-      // Close handlers
       function close(){
         clearInterval(typingTimer);
         typingTimer = null;
         modalRoot.innerHTML = '';
         modalRoot.setAttribute('aria-hidden','true');
         openBtn.focus();
+        burstKisses();
       }
       closeBtn.addEventListener('click', close);
       document.getElementById('modalBackdrop').addEventListener('click', function(e){
@@ -322,12 +325,9 @@ Forever yours ❤️
     }
 
     openBtn.addEventListener('click', showModal);
-
-    /* Accessibility: allow Enter/Space on button */
     openBtn.addEventListener('keyup', function(e){
       if(e.key === 'Enter' || e.key === ' ') showModal();
     });
-
   </script>
 </body>
 </html>
