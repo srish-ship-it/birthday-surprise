@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,6 +22,7 @@
       -moz-osx-font-smoothing:grayscale;
       color:#111827;
       overflow:hidden;}
+      
      h1 {
       font-size: 3rem;
       margin-top: 1.5rem;
@@ -69,6 +71,7 @@
       width:240px;
       height:240px;
     }
+    
 
     .btn{
       display:inline-block;
@@ -178,10 +181,51 @@
   50% { transform: scale(1.1) translateY(-1px); opacity: 1; }
   100% { transform: scale(0.9) translateY(1px); opacity: 0.8; }
 }
+.balloons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 55px;
+  border-radius: 50% 50% 50% 50%;
+  background: pink;
+  animation: floatUp 12s linear infinite;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #555;
+  transform: translateX(-50%);
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(100vh) translateX(0) scale(1); opacity: 1; }
+  25%  { transform: translateY(70vh) translateX(-20px) scale(1.05); }
+  50%  { transform: translateY(40vh) translateX(20px) scale(0.95); }
+  75%  { transform: translateY(10vh) translateX(-15px) scale(1.1); }
+  100% { transform: translateY(-120vh) translateX(0) scale(1.2); opacity: 0; }
+}  
+
 
   </style>
 </head>
 <body>
+<div class="balloons" id="balloons"></div>
+
   <div class="wrap">
     <div class="hearts" id="heartsContainer" aria-hidden="true"></div>
 
@@ -352,7 +396,27 @@ Forever yours ❤️`;
     openBtn.addEventListener('click', showModal);
     openBtn.addEventListener('keyup', function(e){
       if(e.key === 'Enter' || e.key === ' ') showModal();
-    });
+    })
+
+// 🎈 Balloons generator
+const balloonContainer = document.getElementById('balloons');
+const colors = ["#f87171","#fbbf24","#34d399","#60a5fa","#a78bfa","#f472b6"];
+
+function createBalloon(){
+  const b = document.createElement('div');
+  b.className = 'balloon';
+  b.style.left = Math.random() * 90 + "vw";  // random horizontal position
+  b.style.background = colors[Math.floor(Math.random() * colors.length)];
+  b.style.animationDuration = (8 + Math.random() * 6) + "s"; // random speed
+  balloonContainer.appendChild(b);
+  
+  // remove after float
+  setTimeout(()=> b.remove(), 15000);
+}
+
+// keep releasing balloons
+setInterval(createBalloon, 1200);
+;
   </script>
 </body>
 </html>
